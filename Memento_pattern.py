@@ -1,9 +1,11 @@
 class EditorState:
-    def __init__(self, content):
-        self.content = content
+    def returnContent(self, content):
+        return content
 
 
 class Editor:
+    content = ""
+
     def __init__(self):
         self.content = ""
 
@@ -14,7 +16,7 @@ class Editor:
         self.content = value
 
     def createContent(self):
-        return EditorState(self.content)
+        return EditorState.returnContent(self, self.content)
 
     def restore(self, new_value):
         self.content = new_value
@@ -24,6 +26,8 @@ class Editor:
 
 
 class History:
+    history = []
+
     def __init__(self):
         self.history = []
 
@@ -42,7 +46,7 @@ class History:
 
     def getvalue(self):
         my_list = self.history
-        return self.history
+        return my_list
 
 
 editor = Editor()
@@ -61,5 +65,5 @@ editor.setContent("D")
 history.push(editor.createContent())
 
 editor.restore(history.remove())
-print(history.getvalue())
+print(history.history)
 print(editor.getcontent())
